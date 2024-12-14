@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+#
+# Currently just a wrapper to run sbindgen.py
+#
+import sys
+import subprocess
+import os
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
+sbindgen_py_path = os.path.join(script_dir, "sbindgen.py")
+
+try:
+    subprocess.run([sys.executable, sbindgen_py_path] + sys.argv[1:], check=True)
+except subprocess.CalledProcessError as e:
+    sys.exit(e.returncode)
